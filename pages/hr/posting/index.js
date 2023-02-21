@@ -2,19 +2,101 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Layout from "../../../lib/Layout";
+import TableWithStatus from "../../../components/Tables";
 // import SocialPostContainer from "../components/SocialPost/SocialPostContainer";
 const inter = Inter({ subsets: ["latin"] });
 import {
   Box,
   chakra,
-  SimpleGrid,
-  Stat,
-  StatLabel,
-  StatNumber,
-  useColorModeValue,
+  Flex,
+  Text,
+  ButtonGroup,
+  IconButton,
+  VStack,
 } from "@chakra-ui/react";
+import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
+import NextLink from "next/link";
+
 import StatsCard from "../../../components/StatsCard";
-export default function Posting() {
+import JobProfileTable from "../../../components/Tables/JobProfileTable";
+export default function Resumes() {
+  const columnsData = [
+    {
+      Header: "JOB TITLE",
+      accessor: "title",
+      type: "name",
+      isLink: true,
+      HeaderStyles: {
+        w: "25%",
+      },
+      styles: {
+        noOfLines: "1",
+        textDecoration: "underline",
+        width: "100%",
+      },
+    },
+    {
+      Header: "CREATED",
+      accessor: "created",
+    },
+    {
+      Header: "# APPLICANTS",
+      accessor: "applied",
+    },
+    {
+      Header: "STATUS",
+      accessor: "status",
+    },
+    {
+      Header: "ACTIONS",
+      accessor: "actions",
+      TitleStyles: {
+        justify: "center",
+      },
+      Cell: (tableProps) => (
+        <Flex w={"100%"} justify={"center"}>
+          <ButtonGroup variant="solid" size="sm" spacing={3}>
+            <IconButton
+              as={NextLink}
+              href={"/hr/posting/job-overview"}
+              colorScheme="blue"
+              icon={<BsBoxArrowUpRight />}
+              aria-label="Up"
+              //   onClick={}
+            />
+          </ButtonGroup>
+        </Flex>
+      ),
+    },
+  ];
+
+  const header = ["Job title", "created", "# Applicants", "status", "actions"];
+  const tableData = [
+    {
+      title: "Front End Developer",
+      created: "7 days ago",
+      applied: "4",
+      status: "open",
+    },
+    {
+      title: "Dev Ops",
+      created: "23 hours ago",
+      applied: "7",
+      status: "open",
+    },
+    {
+      title: "Data Scientist",
+      created: "A few seconds ago",
+      applied: "6",
+      status: "open",
+    },
+    {
+      title: "Java Developer",
+      created: "A few hours ago",
+      applied: "10",
+      status: "open",
+    },
+  ];
   return (
     <Layout>
       <Head>
@@ -23,27 +105,23 @@ export default function Posting() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Box maxW="7xl" mx={"auto"} pt={1} px={{ base: 2, sm: 12, md: 17 }}>
-          <chakra.h1
-            textAlign={"center"}
-            fontSize={"4xl"}
-            py={10}
-            fontWeight={"bold"}
-          >
-            Welcome to Zenroll for HR
-          </chakra.h1>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, lg: 8 }}>
-            <StatsCard title={"Total Openings"} stat={"10"} />
-            <StatsCard title={"Total Applications"} stat={"300"} />
-            <StatsCard title={"Projects with requirements"} stat={"5"} />
-            <StatsCard
-              title={"Total Requirements across projects"}
-              stat={"10"}
-            />
-          </SimpleGrid>
-        </Box>
-      </main>
+
+      <VStack width={"100%"} mx={"auto"} pt={1} align={"flex-start"}>
+        {/* <Text fontSize={24}>Job Openings Dashboard</Text> */}
+        <TableWithStatus
+          title={"Job Openings Dashboard"}
+          headerBg={"blue.700"}
+          enablePagination={true}
+          pageSize={5}
+          enableSearch={true}
+          columnsData={columnsData}
+          tableData={tableData}
+          size={"md"}
+          isBordered={true}
+          badges={true}
+          // onRowClick={(row, index) => handleDsClick(row)}
+        />
+      </VStack>
     </Layout>
   );
 }

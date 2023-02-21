@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 import {
   Box,
   chakra,
+  Flex,
   SimpleGrid,
   Stat,
   StatLabel,
@@ -14,7 +15,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import StatsCard from "../../../components/StatsCard";
-export default function Resumes() {
+import PostNewJob from "../../../components/Forms/PostNewJob";
+export default function PostJob() {
   return (
     <Layout>
       <Head>
@@ -24,25 +26,19 @@ export default function Resumes() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Box maxW="7xl" mx={"auto"} pt={1} px={{ base: 2, sm: 12, md: 17 }}>
-          <chakra.h1
-            textAlign={"center"}
-            fontSize={"4xl"}
-            py={10}
-            fontWeight={"bold"}
-          >
-            Welcome to Zenroll for HR
-          </chakra.h1>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, lg: 8 }}>
-            <StatsCard title={"Total Openings"} stat={"10"} />
-            <StatsCard title={"Total Applications"} stat={"300"} />
-            <StatsCard title={"Projects with requirements"} stat={"5"} />
-            <StatsCard
-              title={"Total Requirements across projects"}
-              stat={"10"}
-            />
-          </SimpleGrid>
-        </Box>
+        <Flex
+          maxW="7xl"
+          // h={"100vh"}
+          mt={32}
+          mx={"auto"}
+          // pt={1}
+          justify={"center"}
+          align={"center"}
+          // my={"auto"}
+          px={{ base: 2, sm: 12, md: 17 }}
+        >
+          <PostNewJob />
+        </Flex>
       </main>
     </Layout>
   );
