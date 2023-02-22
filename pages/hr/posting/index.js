@@ -1,8 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
 import { Inter } from "@next/font/google";
 import Layout from "../../../lib/Layout";
-import TableWithStatus from "../../../components/Tables";
+// import TableWithStatus from "../../../components/Tables";
+const TableWithStatus = dynamic(() => import("../../../components/Tables"), {
+  ssr: false,
+});
 // import SocialPostContainer from "../components/SocialPost/SocialPostContainer";
 const inter = Inter({ subsets: ["latin"] });
 import {
@@ -14,11 +19,9 @@ import {
   IconButton,
   VStack,
 } from "@chakra-ui/react";
-import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 import NextLink from "next/link";
 
-import StatsCard from "../../../components/StatsCard";
-import JobProfileTable from "../../../components/Tables/JobProfileTable";
 export default function Resumes() {
   const columnsData = [
     {

@@ -118,15 +118,15 @@ export default function TableWithStatus(props) {
     initialPageSize * 5,
   ];
   let pageShow = initialPageSize ? newPageArray : [5, 10, 20, 30, 40, 50];
-  console.log("props table", props.type);
-  const disableScroll = () => {
-    if (props.type.length > 0) {
-      const element = document.getElementById(props.type);
-      element.scrollIntoView();
-    } else {
-      return;
-    }
-  };
+  // console.log("props table", props.type);
+  // const disableScroll = () => {
+  //   if (props?.type.length > 0) {
+  //     const element = document.getElementById(props?.type);
+  //     element.scrollIntoView();
+  //   } else {
+  //     return;
+  //   }
+  // };
   return (
     <Box
       direction="column"

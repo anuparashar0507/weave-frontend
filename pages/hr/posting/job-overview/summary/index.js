@@ -128,7 +128,7 @@ const Summary = () => {
             />
           </Flex>
           <Flex p={4} bg={"gray.200"}>
-            <Image as={NextImage} src={Karen} />
+            <Image alt={"image"} as={NextImage} src={Karen} />
           </Flex>
         </HStack>
       </VStack>
