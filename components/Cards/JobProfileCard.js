@@ -79,9 +79,17 @@ const JobProfileCard = ({
                   );
                 })}
             </Stack>
-            <Text textAlign={"left"} color={"gray.700"} px={3}>
-              Matching Score : {score}
-            </Text>
+            <Flex>
+              <Text
+                borderRadius={20}
+                bg={"green.200"}
+                textAlign={"left"}
+                color={"gray.700"}
+                px={3}
+              >
+                Matching Score : {score}
+              </Text>
+            </Flex>
           </Stack>
         </HStack>
         <Stack
