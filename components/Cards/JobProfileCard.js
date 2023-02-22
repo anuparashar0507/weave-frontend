@@ -1,5 +1,6 @@
 import {
   Badge,
+  Box,
   Button,
   Center,
   Divider,
@@ -96,9 +97,12 @@ const JobProfileCard = ({
             Profile Summary
           </Heading>
           <Divider />
-          <Text noOfLines={4} textAlign={"left"} color={"gray.700"} px={3}>
-            {profilesummary}
-          </Text>
+          <Box
+            textAlign={"left"}
+            color={"gray.700"}
+            dangerouslySetInnerHTML={{ __html: profilesummary }}
+            px={3}
+          />
         </Stack>
       </Stack>
     </Center>
