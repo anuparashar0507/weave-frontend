@@ -74,7 +74,7 @@ const JobDescriptionCard = () => {
                 color: "gray.400",
               }}
             >
-              Mar 10, 2019
+              Feb 15, 2023
             </chakra.span>
           </HStack>
         </HStack>

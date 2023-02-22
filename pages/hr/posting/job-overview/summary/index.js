@@ -1,12 +1,25 @@
-import React from "react";
-import Layout from "../../../../lib/Layout";
-import StatsCard from "../../../../components/StatsCard";
-import JobDescriptionCard from "../../../../components/Cards/JobDescriptionCard";
-import { SimpleGrid, VStack, Text } from "@chakra-ui/react";
-import TableWithStatus from "../../../../components/Tables";
-import { useRouter } from "next/router";
-const JobOverview = () => {
-  const router = useRouter();
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import Layout from "../../../../../lib/Layout";
+// import StatsCard from "../../../../components/StatsCard";
+import JobProfileCard from "../../../../../components/Cards/JobProfileCard";
+import { SimpleGrid, VStack, Text, Flex } from "@chakra-ui/react";
+// import PDFViewer from "../../../../../components/Pdf/PdfViewer";
+
+const PDFViewer = dynamic(
+  () => import("../../../../../components/Pdf/PdfViewer"),
+  {
+    ssr: false,
+  }
+);
+
+const Summary = () => {
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
   const columnsData = [
     {
       Header: "NAME",
@@ -85,46 +98,42 @@ const JobOverview = () => {
     },
   ];
 
-  const handleClick = () => {
-    // e.preventDefault();
-    router.push("job-overview/summary");
+  const karen = {
+    name: "Karen Santos",
+    skills: ["react", "vuejs", "css", "html", "javascript"],
+    experience: 8,
+    score: 88.5,
+    skillsummary:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora expedita dicta totam aspernatur doloremque. Excepturi iste iusto eosnim reprehenderit nisi, accusamus delectus nihil quis facere in modi ratione libero!",
+    profilesummary:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora expedita dicta totam aspernatur doloremque. Excepturi iste iusto eosnim reprehenderit nisi, accusamus delectus nihil quis facere in modi ratione libero!",
   };
   return (
     <Layout>
       <VStack w={"100%"} align={"flex-start"}>
-        <Text fontSize={24}>Job Profile & Matching Applicants</Text>
+        <Text fontSize={24}>Profile Summary</Text>
 
-        <JobDescriptionCard />
-        <SimpleGrid columns={1} gap={4} w={"100%"}>
-          <TableWithStatus
-            headerBg={"blue.700"}
-            enablePagination={true}
-            pageSize={5}
-            enableSearch={true}
-            columnsData={columnsData}
-            tableData={tableData}
-            size={"md"}
-            isBordered={true}
-            badges={true}
-            onRowClick={(row, index) => handleClick(row)}
-          />
+        <SimpleGrid columns={2} gap={4} w={"100%"}>
           {/* {profiles.map((profile, i) => {
-            return (
-              <JobProfileCard
-                key={i}
-                name={profile.name}
-                score={profile.score}
-                experience={profile.experience}
-                skills={profile.skills}
-                profilesummary={profile.profilesummary}
-                skillsummary={profile.skillsummary}
-              />
-            );
+            return ( */}
+          <JobProfileCard
+            key={"karen"}
+            name={karen.name}
+            score={karen.score}
+            experience={karen.experience}
+            skills={karen.skills}
+            profilesummary={karen.profilesummary}
+            skillsummary={karen.skillsummary}
+          />
+          {/* );
           })} */}
+          <Flex>
+            <PDFViewer file={"./karen.pdf"} />
+          </Flex>
         </SimpleGrid>
       </VStack>
     </Layout>
   );
 };
 
-export default JobOverview;
+export default Summary;

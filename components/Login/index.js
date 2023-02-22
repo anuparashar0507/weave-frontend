@@ -37,6 +37,15 @@ export default function Login() {
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
+          <Heading
+            mb={8}
+            textAlign={"center"}
+            fontSize={"64px"}
+            // fontFamily={"head"}
+            color={"blue.700"}
+          >
+            Zenroll
+          </Heading>
           <Heading fontSize={"2xl"}>Sign in to your account</Heading>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
