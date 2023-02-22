@@ -378,43 +378,6 @@ export default function TableWithStatus(props) {
                           })}
                       </Wrap>
                     );
-                  } else if (cell?.column?.Type?.toUpperCase() === "SELECT") {
-                    data = (
-                      <Flex align="center">
-                        <Select
-                          key={cell.row.original.id}
-                          isDisabled={cell.column.isDisabled}
-                          isReadOnly={cell.column.isReadOnly}
-                          w={"80%"}
-                          onChange={(e, i) => {
-                            props.handleSelect(e, cell.row.original, i);
-                          }}
-                          color={textColor}
-                          {...cell.column.styles}
-                        >
-                          <option
-                            key={-1}
-                            value={
-                              cell.row.original.defaultValue
-                                ? cell.row.original.defaultValue
-                                : ""
-                            }
-                          >
-                            {cell.row.original.defaultValue
-                              ? cell.row.original.defaultValue
-                              : "No Index"}
-                          </option>
-                          {cell.value.map((item, index) => (
-                            <>
-                              {" "}
-                              <option key={index} value={item}>
-                                {item}
-                              </option>
-                            </>
-                          ))}
-                        </Select>
-                      </Flex>
-                    );
                   } else if (
                     cell?.column?.type?.toUpperCase() === "COMPONENT"
                   ) {

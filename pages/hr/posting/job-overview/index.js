@@ -1,9 +1,13 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import Layout from "../../../../lib/Layout";
-import StatsCard from "../../../../components/StatsCard";
 import JobDescriptionCard from "../../../../components/Cards/JobDescriptionCard";
 import { SimpleGrid, VStack, Text } from "@chakra-ui/react";
-import TableWithStatus from "../../../../components/Tables";
+// import TableWithStatus from "../../../../components/Tables";
+const TableWithStatus = dynamic(() => import("../../../../components/Tables"), {
+  ssr: false,
+});
+
 import { useRouter } from "next/router";
 const JobOverview = () => {
   const router = useRouter();
@@ -86,7 +90,6 @@ const JobOverview = () => {
   ];
 
   const handleClick = () => {
-    // e.preventDefault();
     router.push("job-overview/summary");
   };
   return (
@@ -108,19 +111,6 @@ const JobOverview = () => {
             badges={true}
             onRowClick={(row, index) => handleClick(row)}
           />
-          {/* {profiles.map((profile, i) => {
-            return (
-              <JobProfileCard
-                key={i}
-                name={profile.name}
-                score={profile.score}
-                experience={profile.experience}
-                skills={profile.skills}
-                profilesummary={profile.profilesummary}
-                skillsummary={profile.skillsummary}
-              />
-            );
-          })} */}
         </SimpleGrid>
       </VStack>
     </Layout>

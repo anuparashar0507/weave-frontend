@@ -12,7 +12,6 @@ import {
   HStack,
 } from "@chakra-ui/react";
 // import PDFViewer from "../../../../../components/Pdf/PdfViewer";
-import pdfFile from "../../../../../assets/karen.pdf";
 import Karen from "../../../../../assets/karen.png";
 import NextImage from "next/image";
 // const PDFViewer = dynamic(

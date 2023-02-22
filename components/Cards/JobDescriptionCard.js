@@ -1,19 +1,4 @@
-import {
-  Box,
-  SimpleGrid,
-  GridItem,
-  Heading,
-  Text,
-  chakra,
-  Stack,
-  InputGroup,
-  Input,
-  InputLeftAddon,
-  Flex,
-  Link,
-  Image,
-  HStack,
-} from "@chakra-ui/react";
+import { Box, chakra, Flex, Link, HStack } from "@chakra-ui/react";
 const JobDescriptionCard = () => {
   return (
     <Flex
